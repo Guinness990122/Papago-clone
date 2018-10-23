@@ -1,3 +1,3 @@
-#Papago-clone
-*Papago-frontend clone by React
-*Practice version
+## Papago clone
+- Papago-frontend clone by React
+- Practice version
