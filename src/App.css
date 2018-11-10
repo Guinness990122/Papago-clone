@@ -44,13 +44,19 @@
   margin-left:750px;
   bottom:545px;
 }
-.arrow{
-  padding:0px;
-  width:30px;
+.delete{
+  border:0px;
+  background-color: #fff;
+  width:25px;
   height:23px;
   position: relative;
   left:355px;
   top:5px;
+}
+.deleteimg{
+  width:25px;
+  height:23px;
+
 }
 .Language{
   padding:15px;
@@ -61,6 +67,7 @@
   color:#3f3f3f;
   border: 1px solid #fff;
 }
+
 .Textarea{
   outline: none;
   padding-left:15px;
@@ -70,13 +77,21 @@
   width:581px;
   font-family:'Open Sans bold';
 }
-.copy{
+.copyimg{
   width: 40px;
   height: 40px;
   position: relative;
-  left:20px;
+}
+.copy{
+  border:0px;
+  background-color: #fff;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  left:5px;
   top:7px;
 }
+
 .translate{
   border: 0;
   outline: 0;
@@ -91,6 +106,7 @@
   background-color:#37b328;
   border-radius: 2px;
 }
+
 .Footer{
   text-align: center;
   font-size:15px;

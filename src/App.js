@@ -1,28 +1,35 @@
 import React, { Component } from 'react';
 import './App.css';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class Translator extends Component {
   constructor(props){
     super(props);
-    this.state = {value:''}
+    this.state = {value:'',
+                  Changevalue:'',
+                  copied:false,
+                };
   this.handleChange = this.handleChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
-  this.onClick = this.onClick.bind(this);}
+  this.onTranslate = this.onTranslate.bind(this);
+  this.onRemove = this.onRemove.bind(this);}
 
   handleChange(event){
+    //value값 입력
     this.setState({value:event.target.value});
   }
-  handleSubmit(event){
-    alert('get' + this.state.value);
-    event.preventDefault();
+
+  onTranslate(){
+  //Changevalue값 변경
+    this.setState({Changevalue:this.state.value})
   }
-  onClick(){
-    this.setState({value:this.refs.textArea.ReactDOM.findDOMNode(this)});
+  onRemove(){
+    this.setState({value:''})
   }
+
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.handleSubmit}>
+
         <div className="header">
           <img src="https://papago.naver.com/79a02f579e43a422f7ec25aec44f45cf.svg" className="logo" alt="logo"/>
           <div className="header-func">
@@ -32,22 +39,24 @@ class Translator extends Component {
           </div>
           <hr width="100%" color="#e9e9e9"/>
         </div>
+
         <div className="body">
-        <select className="Language">
-        <option value="English">English</option>
-        <option value="Korean">Korean</option>
-        <option value="Japanese">Japanese</option>
-        <option value="Chinese">Chinese</option>
-        </select>
-
-        <img src ="https://papago.naver.com/4d31b24d041c26615b62b1dc88263316.png" className="arrow" alt="arrow" />
+          <select className="Language">
+            <option value="English">English</option>
+            <option value="Korean">Korean</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Chinese">Chinese</option>
+          </select>
+        <button id="delete" className="delete" onClick={this.onRemove}><img src ='https://fox-gg.com/wp-content/uploads/2018/07/X-Shape-PNG-High-Quality-Image.png' className="deleteimg" alt="deleteimg" /></button>
         <label>
-        <textarea onChange={this.handleChange} className="Textarea" id="Textarea" placeholder="번역할 내용을 입력하세요."></textarea>
-        value={this.state.value}
+          <textarea className="Textarea" id="Textarea" placeholder="번역할 내용 입력하세요." value={this.state.value} onChange={this.handleChange}></textarea>
         </label>
+        <CopyToClipboard text={this.state.value}
+          onCopy={() => this.setState({copied: true})}>
+        <button  type='Submit' className="copy" alt="arrow" ><img src="https://papago.naver.com/78cef6a801f2b67b73966d965b43677c.png" className="copyimg" alt="copyimg"/></button>
+        </CopyToClipboard>
+        <div><button type='Submit' id ="translate" className="translate" onClick={this.onTranslate}>번역하기</button></div>
 
-        <img src="https://papago.naver.com/78cef6a801f2b67b73966d965b43677c.png" className="copy" alt="arrow" />
-        <div><button onClick={this.onClick} id ="translate" className="translate" >번역하기</button></div>
         </div>
 
         <div className="resultbody">
@@ -57,11 +66,13 @@ class Translator extends Component {
         <option value="Japanese">Japanese</option>
         <option value="Chinese">Chinese</option>
         </select>
-
         <div className="result" id="result">
-        <textarea ref="textArea" className="Textarea" id="Textarea" readOnly="readOnly">
-        </textarea>
-        <img src="https://papago.naver.com/78cef6a801f2b67b73966d965b43677c.png" className="copy" alt="arrow" />
+        <textarea ref="textArea" className="Textarea" id="Textarea" value={this.state.Changevalue} readOnly="readOnly"></textarea>
+        <CopyToClipboard text={this.state.value}
+          onCopy={() => this.setState({copied: true})}>
+        <button type='Submit' className="copy" alt="arrow" ><img src="https://papago.naver.com/78cef6a801f2b67b73966d965b43677c.png" className="copyimg" alt="copyimg"/></button>
+        </CopyToClipboard>
+
         </div>
         </div>
 
@@ -70,10 +81,9 @@ class Translator extends Component {
        <h4>권OO (TaeBbong)<br/>
        facebook.com/taebbong&nbsp;&nbsp;github.com/TaeBbong </h4>
       </div>
-      </form>
       </div>
     );
   }
 }
 
-export default Translate;
+export default Translator;
